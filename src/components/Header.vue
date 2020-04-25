@@ -1,24 +1,69 @@
 <template>
+  <v-app>
+    <v-navigation-drawer 
+        absolute 
+        temporary 
+        v-model="drawer"
+        bottom
+    >
+    <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Application
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            subtext
+          </v-list-item-subtitle>
+        </v-list-item-content>
+    </v-list-item>
+
+    <v-divider></v-divider>
+
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+        >
+        <v-list-item v-for="(item,i) in menuItems" :key="`navdrawer${i}`">
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+            <v-icon>{{item.icon}}</v-icon>
+        </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-toolbar
       color="primary"
       dark
       max-height="64"
     >
+    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     <router-link to="/" tag="span" style="cursor:pointer">
     <v-toolbar-title v-text="'Title Company'"></v-toolbar-title>
     </router-link>
       <v-spacer></v-spacer>
-        <!-- <v-toolbar-items> -->
             <v-btn v-for="(item,i) in menuItems" :key="`menuItems${i}`" :to="item.route" text>
                 <span class="mr-2">{{item.title}}</span>
                 <v-icon>{{item.icon}}</v-icon>
             </v-btn> 
-        <!-- </v-toolbar-items> -->
     </v-toolbar>
+   </v-app> 
 </template>
 
 <script>
     export default {
+        data(){
+              return{
+                  drawer: false,
+                  group: null
+                }
+            },
+        watch:{
+          group(){
+            this.drawer = false
+          },
+            },
         computed:{
             menuItems(){
                 return[

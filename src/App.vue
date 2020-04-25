@@ -1,13 +1,11 @@
 <template>
-  <v-app>
+    <div>
+    <!-- <v-navigation-drawer></v-navigation-drawer> -->
     <AppHeader/>
-    <!-- <v-content>
-      <Hello/>
-    </v-content>  -->
-      <v-content>
-        <router-view/>
-      </v-content>
-  </v-app>
+    <v-content>
+      <router-view/>
+    </v-content>
+    </div>
 </template>
 
 <script>
