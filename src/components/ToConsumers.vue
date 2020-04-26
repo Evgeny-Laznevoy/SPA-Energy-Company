@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>News</h1>
+        Consum
     </div>
 </template>
 
